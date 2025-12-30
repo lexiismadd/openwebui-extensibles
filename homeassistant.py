@@ -1,7 +1,7 @@
 """
 title: Home Assistant Control
 author: open-webui
-author_url: https://github.com/open-webui
+author_url: https://github.com/lexiismadd
 funding_url: https://github.com/open-webui
 version: 1.0.0
 license: MIT
