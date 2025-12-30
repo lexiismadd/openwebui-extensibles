@@ -45,7 +45,7 @@ A comprehensive Python tool for Open WebUI v0.6.4+ that enables LLMs to control 
 1. Log into Open WebUI as an admin
 2. Navigate to **Settings** → **Tools**
 3. Click **"+"** to add a new tool
-4. Copy and paste the entire contents of `home_assistant_tool.py`
+4. Copy and paste the entire contents of `homeassistant.py`
 5. Click **Save**
 
 ### Step 3: Configure the Valves
