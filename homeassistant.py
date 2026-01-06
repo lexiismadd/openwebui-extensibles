@@ -1,6 +1,6 @@
 """
 title: Home Assistant Control
-author: open-webui
+author: lexiismadd
 author_url: https://github.com/lexiismadd
 funding_url: https://github.com/open-webui
 version: 3.2.0
