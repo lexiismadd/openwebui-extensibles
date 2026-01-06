@@ -72,3 +72,9 @@ The tool operates in a structured sequence to ensure precision:
 > "Run the 'Movie Night' scene and close the bedroom blinds."
 
 ---
+
+## Issues
+
+Please log any issues [on the Github repo](https://github.com/lexiismadd/openwebui-extensibles/issues)
+
+---

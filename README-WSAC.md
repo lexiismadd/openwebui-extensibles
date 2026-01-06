@@ -99,6 +99,8 @@ To use this tool, your environment must have:
 
 ---
 
-## 📝 License
+## Issues
 
-This project is licensed under the **MIT License**.
+Please log any issues [on the Github repo](https://github.com/lexiismadd/openwebui-extensibles/issues)
+
+---
