@@ -1,10 +1,11 @@
-# 🏠 Home Assistant Control for Open WebUI
+# 🏠 Home Assistant for Open WebUI
 
-**Version:** 3.2.0
+**Version:** 1.3.0
 
 **Author:** lexiismadd
 
-This tool provides a powerful, natural language interface for controlling your **Home Assistant** ecosystem directly from Open WebUI. It is designed to bridge the gap between human requests and the technical entity IDs required by the Home Assistant API.
+This tool connects to your **Home Assistant** instance to allow control of your devices directly from Open WebUI.
+This tool was inspired by a few other Home Assistant tools on the Open WebUI community that have not had an update in some time, and the newer versions of Home Assistant no longer work with those tools.
 
 ---
 
@@ -46,7 +47,7 @@ The tool operates in a structured sequence to ensure precision:
 
 ## 🛠️ Requirements
 
-* **Home Assistant:** An accessible instance with the REST API enabled.
+* **Home Assistant:** Minimum v2025.12.4 with the REST API exposed to Open WebUI (a Long Lived Access Token is required).
 * **Network:** Open WebUI must have network line-of-sight to the Home Assistant URL.
 
 ---
@@ -70,6 +71,13 @@ The tool operates in a structured sequence to ensure precision:
 **Complex Automation:**
 
 > "Run the 'Movie Night' scene and close the bedroom blinds."
+
+---
+
+## Special Notes on Include vs Exclude
+
+If you specify an *INCLUSION* pattern for `INCLUDED_ENTITIES`, then **ONLY** those entities that match that pattern will be available to the LLM.
+However, if you specify an *EXCLUSION* pattern for `EXCLUDED_ENTITIES`, then **ALL** entities **EXCEPT** those that match the pattern will be available to the LLM.
 
 ---
 

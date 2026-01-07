@@ -1,9 +1,9 @@
 """
-title: Home Assistant Control
+title: Home Assistant
 author: lexiismadd
 author_url: https://github.com/lexiismadd
 funding_url: https://github.com/open-webui
-version: 3.2.0
+version: 1.3.2
 license: MIT
 requirements: aiohttp, loguru
 """
