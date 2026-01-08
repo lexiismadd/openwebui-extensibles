@@ -4,7 +4,7 @@ description: Search and Crawls the web using SearXNG, OpenWebUI Native Search, a
 author: lexiismadd
 author_url: https://github.com/lexiismadd
 funding_url: https://github.com/open-webui
-version: 2.8.1
+version: 2.8.2
 license: MIT
 requirements: aiohttp, loguru, crawl4ai, orjson, tiktoken
 """
@@ -15,7 +15,7 @@ import tiktoken
 import aiohttp
 import asyncio
 from urllib.parse import parse_qs, urlparse, quote
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from typing import Any, List, Optional, Union, Callable, Literal
 from loguru import logger
 from crawl4ai import BestFirstCrawlingStrategy, CrawlerRunConfig, DefaultTableExtraction, KeywordRelevanceScorer, LLMConfig, BrowserConfig, CacheMode, DefaultMarkdownGenerator, LLMExtractionStrategy
@@ -163,6 +163,13 @@ class Tools:
             default=200,
             description="Image thumbnail size (in px) square.  eg, setting 200 will mean thumbnails are 200x200px in size. Ignored if 'Display images as thumbnails' is off.",
         )
+        CRAWL4AI_MIN_IMAGE_SCORE: int = Field(
+            title="Min Image Score To Include",
+            default=6,
+            ge=0,
+            le=10,
+            description="Minimum image score from Crawl4AI to consider including in the response. Min 0, Max 10.",
+        )
         CRAWL4AI_VALIDATE_IMAGES: bool = Field(
             title="Validate Image Links",
             default=True,
@@ -251,6 +258,24 @@ class Tools:
             default=False,
             description="Enable detailed debug logging"
         )
+        
+        @model_validator(mode='after')
+        def validate_settings(self):
+            """Validate the conditional settings."""
+
+            # USE_NATIVE_SEARCH or SEARCH_WITH_SEARXNG must be selected
+            if not self.USE_NATIVE_SEARCH and not self.SEARCH_WITH_SEARXNG:
+                raise ValueError(
+                    "Either 'Use Native Search' or 'Search with SearXNG' must be enabled"
+                )
+            
+            # SEARXNG_BASE_URL is required only when SEARCH_WITH_SEARXNG is True
+            if self.SEARCH_WITH_SEARXNG and (not self.SEARXNG_BASE_URL or not self.SEARXNG_BASE_URL.strip()):
+                raise ValueError(
+                    "'SearXNG Search URL' is required when 'Search with SearXNG' is enabled. "
+                    "Please provide the URL for your SearXNG instance."
+                )
+            return self
 
     class UserValves(BaseModel):
         """Per-user configurable options for Research Mode and crawling strategies."""
@@ -1583,7 +1608,7 @@ Return only the link numbers (e.g., "1, 3, 5"), nothing else."""
                             image_list.append(src)
                 
                 video_list = []
-                found_videos = list(filter(lambda x: x.get("score", 0) >= 5, item.get("media", {}).get("videos", [])))
+                found_videos = list(filter(lambda x: x.get("score", 0) >= self.valves.CRAWL4AI_MIN_IMAGE_SCORE, item.get("media", {}).get("videos", [])))
                 for vid in found_videos:
                     src = vid.get("src")
                     if src:
