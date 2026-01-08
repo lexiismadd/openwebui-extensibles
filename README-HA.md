@@ -1,10 +1,10 @@
-# 🏠 Home Assistant for Open WebUI
+# 🏠 Home Assistant Tool for Open WebUI
 
-**Version:** 1.3.0
+**Version:** 2.0.0
 
 **Author:** lexiismadd
 
-This tool connects to your **Home Assistant** instance to allow control of your devices directly from Open WebUI.
+This tool connects to your **Home Assistant** instance via Websockets or REST API to allow control of your devices directly from Open WebUI.
 This tool was inspired by a few other Home Assistant tools on the Open WebUI community that have not had an update in some time, and the newer versions of Home Assistant no longer work with those tools.
 
 ---
@@ -42,6 +42,9 @@ The tool operates in a structured sequence to ensure precision:
 | **DISCOVER_DOMAINS** | Comma-separated list of domains to track (Default: `light, switch, climate, vacuum`, etc.). |
 | **INCLUDED_ENTITIES** | (Optional) Wildcard patterns to specifically include (e.g., `light.living_room_*`). |
 | **EXCLUDED_ENTITIES** | (Optional) Wildcard patterns to hide from the AI (e.g., `sensor.*_battery`). |
+| **USE_WEBSOCKET** | Use WebSocket API (required for entity/area detection). |
+| **AREA_MATCH_THRESHOLD** | Tunes the per-Area detection for entity match. Minimum score (0-1) to accept an area-specific match. Lower = more permissive, higher = stricter.. |
+| **GLOBAL_FALLBACK_THRESHOLD** | Tunes the fallback threshold for global entity match. Minimum score (0-1) for global search fallback to be considered a valid match. |
 
 ---
 

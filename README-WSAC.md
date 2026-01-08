@@ -1,20 +1,20 @@
 # 🌐 Web Search and Crawl for Open WebUI
 
-**Version:** 2.7.2
+**Version:** 2.8.1
 
 **Author:** lexiismadd
 
-This tool enables your Open WebUI instance to not only search the internet but to **deeply crawl, extract, and summarize** content from web pages. It combines the power of search engines (SearXNG and Open WebUI Native Search) with the advanced extraction capabilities of **Crawl4AI**.
+This tool enables your Open WebUI instance to not only search the internet but to **deeply crawl, extract, and summarise** content from web pages. It combines the power of search engines (**SearXNG** and *Open WebUI Native Search**) with the advanced extraction capabilities of **Crawl4AI**.
 
 ---
 
 ## ✨ Key Features
 
-* **Dual-Engine Search:** Simultaneously utilizes [SearXNG](https://github.com/searxng/searxng) and OpenWebUI Native Search to find the most relevant URLs.
+* **Dual-Engine Search:** Simultaneously utilises [SearXNG](https://github.com/searxng/searxng) and OpenWebUI Native Search to find the most relevant URLs.
 * **Intelligent Crawling:** Powered by [Crawl4AI](https://crawl4ai.com), it extracts clean, markdown-formatted content while stripping away ads, sidebars, and navigation clutter.
-* **Research Mode:** Recursively follows links on discovered pages to perform "Deep Research" based on keyword relevance using **Crawl4AI**'s **Deep Crawl** feature.
-* **LLM-Driven Extraction:** Uses an OpenAI-compatible LLM (like GPT-4, Claude, or Ollama) to summarize and structure the crawled data before it reaches your chat.
-* **Media Enrichment:** Automatically identifies and displays high-quality images and videos from the sources, providing clickable thumbnails directly in the chat.
+* **Research Mode:** Recursively follows links on discovered pages to perform "Deep Research" based on keyword relevance using **Crawl4AI**'s **Deep Crawl** feature. (*User-specific setting*)
+* **LLM-Driven Extraction:** Uses an OpenAI-compatible LLM (like GPT-4, Claude, or Ollama) to summarise and structure the crawled data before it reaches your chat.
+* **Media Enrichment:** Automatically identifies and displays high-quality images and videos from the sources, providing clickable thumbnails directly in the chat. (*User-specific setting*)
 * **Smart Token Management:** Includes automatic content truncation and token counting (via `tiktoken`) to ensure responses stay within model limits.
 * **Concurrent Validation:** Validates image URLs in batches to ensure only "live" media is displayed.
 * **Highly Configurable:** Offers many configuration valves to tune the tool to your preference and environment.
@@ -59,9 +59,12 @@ This tool enables your Open WebUI instance to not only search the internet but t
 | **Crawl4AI** | `Image thumbnail size` | Image thumbnail size (in px) square. |
 | **Crawl4AI** | `Max Tokens used by web content` | Maximum tokens to use for the web search content response. |
 | **Research** | `Research Mode` | Toggles "Research Mode" for deep crawling and multi-layered link following. |
+| **Research** | `Research Crawl Mode` | Toggle between four different crawling strategies |
 | **Research** | `Keyword Relevance Weight` | The keyword relevance weight when using Research mode. |
 | **Research** | `Max Depth` | The maximum depth of links to follow for the Research mode. |
 | **Research** | `Max Pages` | The maximum number of pages to crawl in Research mode. |
+| **Research** | `LLM Link Selection` | Use LLM to select next links when in llm_guided mode. |
+| **Research** | `Include External` | Allow following links to external domains during research crawling. |
 | **LLM** | `LLM Base URL` | The base URL for your preferred OpenAI-compatible LLM. |
 | **LLM** | `LLM API Token` | Optional API Token for your preferred OpenAI-compatible LLM. |
 | **LLM** | `LLM Provider` | The LLM provider and model to use (e.g., `openai/gpt-4o`). |
@@ -87,7 +90,7 @@ To use this tool, your environment must have:
 
 **Standard Search:**
 
-> "Find the latest news on SpaceX Starship and summarize the key findings."
+> "Find the latest news on SpaceX Starship and summarise the key findings."
 
 **Targeted Crawl:**
 
