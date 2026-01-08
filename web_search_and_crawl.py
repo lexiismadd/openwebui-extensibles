@@ -163,6 +163,11 @@ class Tools:
             default=200,
             description="Image thumbnail size (in px) square.  eg, setting 200 will mean thumbnails are 200x200px in size. Ignored if 'Display images as thumbnails' is off.",
         )
+        CRAWL4AI_VALIDATE_IMAGES: bool = Field(
+            title="Validate Image Links",
+            default=True,
+            description="Validate any image links to make sure they are accessible.",
+        )
         CRAWL4AI_MAX_TOKENS: int = Field(
             title="Max Tokens used by web content",
             default=0,
@@ -417,6 +422,9 @@ class Tools:
         Returns True if valid, False otherwise.
         """
         try:
+            if not self.valves.CRAWL4AI_VALIDATE_IMAGES:
+                return True
+            
             timeout = aiohttp.ClientTimeout(total=4)
             url = url.strip()
             headers = {
